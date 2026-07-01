@@ -231,3 +231,59 @@ footer{
     color:#7b8395;
 
 }
+
+.contact{
+
+    margin-top:60px;
+
+    text-align:center;
+
+}
+
+.contact h2{
+
+    margin-bottom:15px;
+
+    font-size:28px;
+
+}
+
+.contact p{
+
+    color:#b8c1d1;
+
+    margin-bottom:20px;
+
+}
+
+.contact a{
+
+    display:block;
+
+    width:max-content;
+
+    margin:10px auto;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:15px 30px;
+
+    border-radius:12px;
+
+    background:#25D366;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.contact a:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:0 0 20px rgba(37,211,102,.4);
+
+}
