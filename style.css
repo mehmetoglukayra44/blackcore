@@ -1,0 +1,233 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:#070b15;
+
+    overflow-x:hidden;
+
+    color:white;
+
+}
+
+.background{
+
+    position:fixed;
+
+    width:100%;
+    height:100%;
+
+    background:
+
+    radial-gradient(circle at top left,#1f4eff 0%,transparent 35%),
+
+    radial-gradient(circle at bottom right,#00ffae 0%,transparent 30%),
+
+    linear-gradient(120deg,#05060b,#111827);
+
+    z-index:-2;
+
+}
+
+header{
+
+    padding:30px;
+
+    text-align:center;
+
+}
+
+.logo{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+
+}
+
+.hero{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+.glass{
+
+    width:1100px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:25px;
+
+    padding:50px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+h1{
+
+    font-size:42px;
+
+    text-align:center;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    margin-top:15px;
+
+    color:#bfc8da;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+    margin-top:50px;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    border:1px solid rgba(255,255,255,.1);
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 40px rgba(0,255,180,.2);
+
+}
+
+.card span{
+
+    font-size:55px;
+
+}
+
+.card h2{
+
+    margin:15px 0;
+
+}
+
+.note-box{
+
+    margin-top:50px;
+
+}
+
+.note-box h2{
+
+    margin-bottom:15px;
+
+}
+
+textarea{
+
+    width:100%;
+
+    height:170px;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    background:#0f172a;
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+button{
+
+    margin-top:20px;
+
+    background:#00d084;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:15px 30px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#00a86b;
+
+}
+
+#savedText{
+
+    margin-top:20px;
+
+    color:#00ff99;
+
+}
+
+footer{
+
+    text-align:center;
+
+    padding:40px;
+
+    color:#7b8395;
+
+}
