@@ -3,25 +3,30 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>BLACKCORE</title>
+<title>BLACKCORE</title>
 
-    <link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#00ff88">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
 <div id="matrix"></div>
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
 
 <header>
 
@@ -32,6 +37,8 @@ BLACKCORE
 </div>
 
 <nav>
+
+<a href="#home">Ana Sayfa</a>
 
 <a href="#services">Hizmetler</a>
 
@@ -47,23 +54,45 @@ BLACKCORE
 
 </header>
 
-<section class="hero">
+<section id="home" class="hero">
 
-<div class="hero-box">
+<div class="hero-content">
 
-<h1>Premium Dijital Ürün Mağazası</h1>
+<span class="badge">
+
+PREMIUM DIGITAL STORE
+
+</span>
+
+<h1>
+
+BLACKCORE
+
+</h1>
 
 <p>
 
-Güvenilir dijital ürün hizmetleri.
+Modern ve güvenilir dijital ürün hizmetleri.
 
 </p>
 
-<a class="whatsapp-button" href="https://wa.me/201213773921">
+<div class="hero-buttons">
 
-WhatsApp ile İletişime Geç
+<a href="#services" class="btn">
+
+Hizmetleri Gör
 
 </a>
+
+<a href="https://wa.me/201213773921"
+
+class="btn2">
+
+WhatsApp
+
+</a>
+
+</div>
 
 </div>
 
@@ -71,97 +100,101 @@ WhatsApp ile İletişime Geç
 
 <section id="services">
 
+<div class="section-title">
+
 <h2>Hizmetlerimiz</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<h3>📱 WhatsApp İşletme Numaraları</h3>
 
 <p>
 
-Fiyat
-
-<br><br>
-
-150 - 300 TL
+Sunulan hizmetler
 
 </p>
 
 </div>
 
+<div class="cards">
+
 <div class="card">
 
-<h3>🎮 Steam Hesapları</h3>
+<div class="icon">
+
+📱
+
+</div>
+
+<h3>
+
+WhatsApp İşletme Numaraları
+
+</h3>
+
+<p>
+
+İşletmeler için kullanılabilecek numaralar.
+
+</p>
+
+<div class="price">
+
+150 - 300 TL
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="icon">
+
+🎮
+
+</div>
+
+<h3>
+
+Steam Hesapları
+
+</h3>
 
 <p>
 
 Steam hesapları satılır.
 
-<br><br>
+</p>
+
+<div class="price">
 
 300 - 600 TL
 
-</p>
+</div>
 
 </div>
 
 <div class="card">
 
-<h3>♾️ Stok</h3>
+<div class="icon">
+
+♾
+
+</div>
+
+<h3>
+
+Stok
+
+</h3>
 
 <p>
 
-Stoklarımız sürekli güncellenmektedir.
+Stoklarımız düzenli olarak güncellenmektedir.
 
 </p>
 
-</div>
+<div class="price">
+
+Aktif
 
 </div>
-
-</section>
-
-<section id="why">
-
-<h2>Neden Biz?</h2>
-
-<div class="why-list">
-
-<div>✔ Hızlı teslimat</div>
-
-<div>✔ Güvenilir hizmet</div>
-
-<div>✔ 7/24 destek</div>
-
-<div>✔ Sürekli güncellenen stok</div>
-
-<div>✔ Uygun fiyatlar</div>
-
-</div>
-
-</section>
-
-<section id="payment">
-
-<h2>Ödeme Yöntemleri</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<h3>🏦 IBAN</h3>
-
-<p>Banka havalesi ile ödeme.</p>
-
-</div>
-
-<div class="card">
-
-<h3>🎮 Play Kod</h3>
-
-<p>Play Kod ile ödeme kabul edilir.</p>
 
 </div>
 
@@ -169,81 +202,35 @@ Stoklarımız sürekli güncellenmektedir.
 
 </section>
 
-<section id="note">
+    <footer>
 
-<h2>Not</h2>
+<div class="footer-logo">
 
-<div class="note-box">
-
-Instagram, WhatsApp vb. uygulamalarına giriş için destek numarasından iletişime geçebilirsiniz.
+BLACKCORE
 
 </div>
-
-</section>
-
-<section id="faq">
-
-<h2>Sıkça Sorulan Sorular</h2>
-
-<div class="faq">
-
-<div class="question">
-
-<h3>Teslimat ne kadar sürer?</h3>
-
-<p>Yoğunluğa göre mümkün olan en kısa sürede teslim edilir.</p>
-
-</div>
-
-<div class="question">
-
-<h3>İletişim nasıl sağlanır?</h3>
-
-<p>WhatsApp üzerinden.</p>
-
-</div>
-
-<div class="question">
-
-<h3>Ödeme yöntemleri nelerdir?</h3>
-
-<p>IBAN ve Play Kod.</p>
-
-</div>
-
-<div class="question">
-
-<h3>Stok bulunuyor mu?</h3>
-
-<p>Stoklarımız düzenli olarak güncellenmektedir.</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<h2>İletişim</h2>
-
-<a class="contact-button" href="https://wa.me/201213773921">
-
-+20 121 377 3921
-
-</a>
-
-</section>
-
-<footer>
 
 <p>
+
+Premium Dijital Hizmetler
+
+</p>
+
+<div class="footer-line"></div>
+
+<p class="copyright">
 
 © 2026 BLACKCORE
 
 </p>
 
 </footer>
+
+<button id="topBtn">
+
+↑
+
+</button>
 
 <script src="script.js"></script>
 
