@@ -6,18 +6,19 @@
 <title>Blackcore — Sanal Numara & Hesap Pazarı</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="noise-overlay" aria-hidden="true"></div>
-<div class="core-glow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <header class="site-header">
   <div class="wrap header-inner">
     <a href="#top" class="brand">
-      <span class="brand-core" aria-hidden="true"></span>
+      <span class="brand-hex" aria-hidden="true">
+        <svg viewBox="0 0 40 40"><polygon points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5"></polygon></svg>
+      </span>
       <span class="brand-name">BLACKCORE</span>
     </a>
     <nav class="main-nav" aria-label="Ana menü">
@@ -28,7 +29,7 @@
     </nav>
     <div class="header-actions">
       <button class="cart-btn" id="cartToggle" aria-label="Sepeti aç">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="18" cy="21" r="1.4"></circle><path d="M2.5 3h2.6l2.3 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6l1.4-7.6H6"></path></svg>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="18" cy="21" r="1.4"></circle><path d="M2.5 3h2.6l2.3 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6l1.4-7.6H6"></path></svg>
         <span class="cart-badge" id="cartCount">0</span>
       </button>
       <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false">
@@ -42,11 +43,12 @@
 
   <!-- HERO -->
   <section class="hero">
+    <span class="hero-ghost-text" aria-hidden="true">BLACKCORE</span>
     <div class="wrap hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow">Doğrulanmış · Hızlı Teslimat · Güvenli Ödeme</p>
-        <h1>Numaran gelsin,<br>hesabın hazır olsun.</h1>
-        <p class="hero-sub">WhatsApp İşletme için sanal numara, Steam oyun hesapları ve daha fazlası — sepetine ekle, bilgini bırak, biz sana dönelim.</p>
+        <p class="eyebrow">Doğrulanmış Satıcı · Anlık Teslimat</p>
+        <h1>Dijital envanterin<br>tek çekirdekte.</h1>
+        <p class="hero-sub">WhatsApp İşletme için sanal numara, Steam oyun hesapları ve talebe özel dijital ürünler — sepetine ekle, gönder, biz sana dönelim.</p>
         <div class="hero-actions">
           <a href="#urunler" class="btn btn-primary">Ürünleri Gör</a>
           <a href="#iletisim" class="btn btn-ghost">WhatsApp'tan Yaz</a>
@@ -59,16 +61,17 @@
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="otp-card">
-          <div class="otp-card-head">
-            <span class="otp-dot"></span>
-            <span class="otp-title">doğrulama kodu</span>
-          </div>
-          <div class="otp-digits" id="otpDigits">
-            <span>0</span><span>0</span><span>0</span><span>—</span><span>0</span><span>0</span><span>0</span>
-          </div>
-          <div class="otp-foot">
-            <span class="otp-status" id="otpStatus">bağlantı bekleniyor…</span>
+        <div class="core">
+          <svg class="core-ring" viewBox="0 0 200 200">
+            <polygon points="100,10 175,55 175,145 100,190 25,145 25,55"></polygon>
+          </svg>
+          <svg class="core-ring core-ring-outer" viewBox="0 0 200 200">
+            <polygon points="100,2 183,50 183,150 100,198 17,150 17,50"></polygon>
+          </svg>
+          <div class="core-glow-inner"></div>
+          <div class="core-readout">
+            <span class="core-readout-label">CORE-ID</span>
+            <span class="core-readout-digits" id="coreDigits">000-000</span>
           </div>
         </div>
         <div class="ghost-card ghost-card-1">STEAM://HESAP</div>
@@ -83,7 +86,7 @@
       <div class="trust-item"><span class="trust-dot"></span>Anlık teslimat</div>
       <div class="trust-item"><span class="trust-dot"></span>Doğrulanmış satıcı</div>
       <div class="trust-item"><span class="trust-dot"></span>Sepetten tek adımda sipariş</div>
-      <div class="trust-item"><span class="trust-dot"></span>7/24 WhatsApp desteği</div>
+      <div class="trust-item"><span class="trust-dot"></span>7/24 destek</div>
     </div>
   </section>
 
@@ -91,7 +94,7 @@
   <section class="services" id="urunler">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Ürünler</p>
+        <p class="eyebrow">01 — Envanter</p>
         <h2>Ne satıyoruz</h2>
       </div>
 
@@ -162,7 +165,7 @@
   <section class="process">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Süreç</p>
+        <p class="eyebrow">02 — Süreç</p>
         <h2>Sipariş nasıl işliyor</h2>
       </div>
       <div class="process-grid">
@@ -174,7 +177,7 @@
         <div class="process-step">
           <span class="step-mark">Gönder</span>
           <h3>E-postanı bırak, gönder</h3>
-          <p>Sepeti WhatsApp ya da e-posta ile bize ilet.</p>
+          <p>Gönder'e bastığın an bize otomatik bildirim düşer.</p>
         </div>
         <div class="process-step">
           <span class="step-mark">Teslim Al</span>
@@ -189,7 +192,7 @@
   <section class="contact" id="iletisim">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">İletişim</p>
+        <p class="eyebrow">03 — İletişim</p>
         <h2>Sipariş için WhatsApp'tan ulaş</h2>
         <p class="contact-sub">Sorular, fiyat teyidi ve teslimat için doğrudan aşağıdaki hatlardan yazabilir, ya da sepetini oluşturup tek adımda gönderebilirsin.</p>
       </div>
@@ -253,8 +256,10 @@
     <p class="field-error" id="checkoutError" hidden>Lütfen geçerli bir e-posta adresi gir.</p>
 
     <div class="checkout-actions">
-      <button class="btn btn-primary btn-block" id="sendWhatsapp">WhatsApp ile Gönder</button>
-      <button class="btn btn-ghost btn-block" id="sendEmail">E-posta ile Gönder</button>
+      <button class="btn btn-primary btn-block" id="sendOrder">
+        <span id="sendOrderLabel">Siparişi Gönder</span>
+      </button>
+      <a class="checkout-alt" id="sendWhatsappAlt" href="#" target="_blank" rel="noopener">veya WhatsApp'tan yaz →</a>
     </div>
   </div>
 </aside>
