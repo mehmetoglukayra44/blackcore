@@ -1,239 +1,200 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>BLACKCORE</title>
-
-<meta name="theme-color" content="#00ff88">
-
+<title>Nova Dijital — Sanal Numara & Hesap Pazarı</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
-<div id="matrix"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
 
-<div class="glow glow1"></div>
-<div class="glow glow2"></div>
-
-<header>
-
-<div class="logo">
-
-BLACKCORE
-
-</div>
-
-<nav>
-
-<a href="#home">Ana Sayfa</a>
-
-<a href="#services">Hizmetler</a>
-
-<a href="#why">Neden Biz?</a>
-
-<a href="#payment">Ödeme</a>
-
-<a href="#faq">SSS</a>
-
-<a href="#contact">İletişim</a>
-
-</nav>
-
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">N#</span>
+      <span class="brand-name">Nova Dijital</span>
+    </a>
+    <nav class="main-nav" aria-label="Ana menü">
+      <a href="#numaralar">Sanal Numara</a>
+      <a href="#hesaplar">Oyun Hesapları</a>
+      <a href="#diger">Diğer</a>
+      <a href="#iletisim" class="nav-cta">İletişim</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
-<section id="home" class="hero">
-
-<div class="hero-content">
-
-<span class="badge">
-
-PREMIUM DIGITAL STORE
-
-</span>
-
-<h1>
-
-BLACKCORE
-
-</h1>
-
-<p>
-
-Modern ve güvenilir dijital ürün hizmetleri.
-
-</p>
-
-<div class="hero-buttons">
-
-<a href="#services" class="btn">
-
-Hizmetleri Gör
-
-</a>
-
-<a href="https://wa.me/201213773921"
-
-class="btn2">
-
-WhatsApp
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="services">
-
-<div class="section-title">
-
-<h2>Hizmetlerimiz</h2>
-
-<p>
-
-Sunulan hizmetler
-
-</p>
-
-</div>
-
-<div class="cards">
-
-<div class="card">
-
-<div class="icon">
-
-📱
-
-</div>
-
-<h3>
-
-WhatsApp İşletme Numaraları
-
-</h3>
-
-<p>
-
-İşletmeler için kullanılabilecek numaralar.
-
-</p>
-
-<div class="price">
-
-150 - 300 TL
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="icon">
-
-🎮
-
-</div>
-
-<h3>
-
-Steam Hesapları
-
-</h3>
-
-<p>
-
-Steam hesapları satılır.
-
-</p>
-
-<div class="price">
-
-300 - 600 TL
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="icon">
-
-♾
-
-</div>
-
-<h3>
-
-Stok
-
-</h3>
-
-<p>
-
-Stoklarımız düzenli olarak güncellenmektedir.
-
-</p>
-
-<div class="price">
-
-Aktif
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-    <footer>
-
-<div class="footer-logo">
-
-BLACKCORE
-
-</div>
-
-<p>
-
-Premium Dijital Hizmetler
-
-</p>
-
-<div class="footer-line"></div>
-
-<p class="copyright">
-
-© 2026 BLACKCORE
-
-</p>
-
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Doğrulanmış · Hızlı Teslimat · Güvenli Ödeme</p>
+        <h1>Numaran gelsin,<br>hesabın hazır olsun.</h1>
+        <p class="hero-sub">WhatsApp İşletme için sanal numara, Steam oyun hesapları ve daha fazlası — tek adreste, anlık teslim.</p>
+        <div class="hero-actions">
+          <a href="#iletisim" class="btn btn-primary">WhatsApp'tan Yaz</a>
+          <a href="#urunler" class="btn btn-ghost">Ürünleri Gör</a>
+        </div>
+        <div class="hero-stats">
+          <div><span class="stat-num">200₺</span><span class="stat-label">Sanal numara başlangıç</span></div>
+          <div><span class="stat-num">400₺</span><span class="stat-label">Oyun hesabı başlangıç</span></div>
+          <div><span class="stat-num">7/24</span><span class="stat-label">Sipariş desteği</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="otp-card">
+          <div class="otp-card-head">
+            <span class="otp-dot"></span>
+            <span class="otp-title">doğrulama kodu</span>
+          </div>
+          <div class="otp-digits" id="otpDigits">
+            <span>0</span><span>0</span><span>0</span><span>—</span><span>0</span><span>0</span><span>0</span>
+          </div>
+          <div class="otp-foot">
+            <span class="otp-status" id="otpStatus">bağlantı bekleniyor…</span>
+          </div>
+        </div>
+        <div class="ghost-card ghost-card-1">STEAM://HESAP</div>
+        <div class="ghost-card ghost-card-2">+•• •• •••• ••</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="urunler">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Ürünler</p>
+        <h2>Ne satıyoruz</h2>
+      </div>
+
+      <div class="card-grid">
+
+        <article class="product-card card-numbers" id="numaralar">
+          <div class="card-top">
+            <span class="card-tag">WhatsApp İşletme</span>
+            <h3>Sanal Numaralar</h3>
+          </div>
+          <p class="card-desc">WhatsApp İşletme hesabı açılışı için hazır, doğrulamaya uygun sanal numaralar. Farklı ülke kodu seçenekleriyle.</p>
+          <ul class="card-features">
+            <li>Anlık doğrulama desteği</li>
+            <li>Tekrar kullanılmamış, temiz hat</li>
+            <li>Kurulum yönlendirmesi dahil</li>
+          </ul>
+          <div class="card-price-row">
+            <span class="price-range">200₺ – 400₺</span>
+            <a href="#iletisim" class="card-btn">Numara Al</a>
+          </div>
+        </article>
+
+        <article class="product-card card-games" id="hesaplar">
+          <div class="card-top">
+            <span class="card-tag">Steam</span>
+            <h3>Oyun Hesapları</h3>
+          </div>
+          <p class="card-desc">Kütüphanesi dolu, orijinal Steam hesapları. İhtiyacına göre bütçe ve oyun kütüphanesi seçenekleri.</p>
+          <ul class="card-features">
+            <li>Tam yetkili hesap devri</li>
+            <li>Satış öncesi kütüphane önizlemesi</li>
+            <li>Satış sonrası destek</li>
+          </ul>
+          <div class="card-price-row">
+            <span class="price-range">400₺ – 800₺</span>
+            <a href="#iletisim" class="card-btn">Hesap Al</a>
+          </div>
+        </article>
+
+        <article class="product-card card-other" id="diger">
+          <div class="card-top">
+            <span class="card-tag">Özel Talepler</span>
+            <h3>Diğer</h3>
+          </div>
+          <p class="card-desc">Listede olmayan dijital ürün ve hesap talepleri için bize yaz, birlikte netleştirelim. Fiyat ihtiyaca göre şekillenir.</p>
+          <ul class="card-features">
+            <li>Talebe özel fiyatlandırma</li>
+            <li>Önce teklif, sonra onay</li>
+            <li>Esnek ödeme seçenekleri</li>
+          </ul>
+          <div class="card-price-row">
+            <span class="price-range">500₺ ve üzeri</span>
+            <a href="#iletisim" class="card-btn">Bize Yaz</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="process">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Süreç</p>
+        <h2>Sipariş nasıl işliyor</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <span class="step-mark">Yaz</span>
+          <h3>Ürünü seç, bize yaz</h3>
+          <p>WhatsApp üzerinden istediğin ürünü ve tercihini ilet.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-mark">Onayla</span>
+          <h3>Fiyat ve detay netleşsin</h3>
+          <p>Fiyatı ve teslimat şeklini birlikte teyit ederiz.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-mark">Teslim Al</span>
+          <h3>Ödeme sonrası anlık teslim</h3>
+          <p>Numaran ya da hesabın, onayın sonrası hemen elinde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="iletisim">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">İletişim</p>
+        <h2>Sipariş için WhatsApp'tan ulaş</h2>
+        <p class="contact-sub">Sorular, fiyat teyidi ve teslimat için doğrudan aşağıdaki hatlardan yazabilirsin.</p>
+      </div>
+
+      <div class="contact-grid">
+        <a class="contact-card contact-primary" href="https://wa.me/201213773921" target="_blank" rel="noopener">
+          <span class="contact-role">Ana İletişim</span>
+          <span class="contact-number">+20 12 1377 3921</span>
+          <span class="contact-cta">WhatsApp'ta Aç →</span>
+        </a>
+        <a class="contact-card" href="https://wa.me/22896127460" target="_blank" rel="noopener">
+          <span class="contact-role">İkinci Hat</span>
+          <span class="contact-number">+228 96 12 74 60</span>
+          <span class="contact-cta">WhatsApp'ta Aç →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Nova Dijital</span>
+    <span class="footer-note">Sanal numara · Steam hesabı · Dijital ürün</span>
+  </div>
 </footer>
 
-<button id="topBtn">
-
-↑
-
-</button>
-
 <script src="script.js"></script>
-
 </body>
-
 </html>
