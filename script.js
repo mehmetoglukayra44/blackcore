@@ -1,8 +1,12 @@
 // =====================================================================
 // CONFIG — buraları kendi bilgilerinle değiştir
 // =====================================================================
-const ORDER_WHATSAPP_NUMBER = "201213773921"; // siparişlerin WhatsApp'tan düşeceği numara (başında + ve boşluk olmadan)
-const ORDER_EMAIL_ADDRESS = "siparis@blackcore.com"; // TODO: gerçek sipariş e-postanla değiştir
+// 1) https://web3forms.com adresine git, e-postanla ücretsiz bir "Access Key" oluştur.
+// 2) O anahtarı aşağıya yapıştır. Bu sayede müşteri "Siparişi Gönder"e bastığında
+//    hiçbir uygulama açılmadan, doğrudan senin e-postana otomatik bildirim düşer.
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+
+const ORDER_WHATSAPP_NUMBER = "201213773921"; // yedek "WhatsApp'tan yaz" linki için
 
 // =====================================================================
 // Mobile nav toggle
@@ -43,7 +47,7 @@ function showToast(message) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => {
     toastEl.classList.remove("is-visible");
-  }, 2600);
+  }, 3200);
 }
 
 // =====================================================================
@@ -84,8 +88,9 @@ const cartCheckoutEl = document.getElementById("cartCheckout");
 const checkoutEmail = document.getElementById("checkoutEmail");
 const checkoutNote = document.getElementById("checkoutNote");
 const checkoutError = document.getElementById("checkoutError");
-const sendWhatsappBtn = document.getElementById("sendWhatsapp");
-const sendEmailBtn = document.getElementById("sendEmail");
+const sendOrderBtn = document.getElementById("sendOrder");
+const sendOrderLabel = document.getElementById("sendOrderLabel");
+const sendWhatsappAlt = document.getElementById("sendWhatsappAlt");
 
 function openCart() {
   cartDrawer.classList.add("is-open");
@@ -140,8 +145,7 @@ function removeItem(id) {
 function bumpBadge() {
   if (!cartCountEl) return;
   cartCountEl.classList.remove("bump");
-  // force reflow so animation can restart
-  void cartCountEl.offsetWidth;
+  void cartCountEl.offsetWidth; // restart animation
   cartCountEl.classList.add("bump");
 }
 
@@ -156,6 +160,8 @@ function cartCount() {
 function renderCart() {
   const count = cartCount();
   if (cartCountEl) cartCountEl.textContent = String(count);
+
+  updateWhatsappAlt();
 
   if (!cartItemsEl) return;
 
@@ -199,7 +205,6 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-// event delegation for qty/remove buttons
 if (cartItemsEl) {
   cartItemsEl.addEventListener("click", (e) => {
     const btn = e.target.closest("button[data-action]");
@@ -212,7 +217,6 @@ if (cartItemsEl) {
   });
 }
 
-// add-to-cart buttons on product cards
 document.querySelectorAll(".add-to-cart").forEach((btn) => {
   btn.addEventListener("click", () => {
     const { id, name, price, tag } = btn.dataset;
@@ -222,7 +226,7 @@ document.querySelectorAll(".add-to-cart").forEach((btn) => {
 });
 
 // =====================================================================
-// CHECKOUT — build order message, send via WhatsApp or email
+// CHECKOUT — build order text, auto-notify via Web3Forms, WhatsApp fallback
 // =====================================================================
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -230,7 +234,7 @@ function isValidEmail(value) {
 
 function buildOrderText() {
   const lines = [];
-  lines.push("🆕 Yeni Sipariş! - Blackcore");
+  lines.push("Yeni Sipariş! - Blackcore");
   lines.push("");
   lines.push("Ürünler:");
   cart.forEach((item) => {
@@ -246,6 +250,12 @@ function buildOrderText() {
   return lines.join("\n");
 }
 
+function updateWhatsappAlt() {
+  if (!sendWhatsappAlt) return;
+  const text = encodeURIComponent(buildOrderText());
+  sendWhatsappAlt.href = `https://wa.me/${ORDER_WHATSAPP_NUMBER}?text=${text}`;
+}
+
 function validateCheckout() {
   if (cart.length === 0) return false;
   const email = checkoutEmail.value.trim();
@@ -258,22 +268,58 @@ function validateCheckout() {
   return true;
 }
 
-if (sendWhatsappBtn) {
-  sendWhatsappBtn.addEventListener("click", () => {
-    if (!validateCheckout()) return;
-    const text = encodeURIComponent(buildOrderText());
-    window.open(`https://wa.me/${ORDER_WHATSAPP_NUMBER}?text=${text}`, "_blank");
-    showToast("WhatsApp açılıyor, mesajı göndermeyi unutma");
+async function sendOrderAutomatically() {
+  const email = checkoutEmail.value.trim();
+  const note = checkoutNote.value.trim();
+  const orderText = buildOrderText();
+
+  const payload = {
+    access_key: WEB3FORMS_ACCESS_KEY,
+    subject: "Yeni Sipariş! - Blackcore",
+    from_name: "Blackcore Sipariş Botu",
+    replyto: email,
+    message: orderText,
+    "Müşteri E-posta": email,
+    Not: note || "—",
+  };
+
+  const response = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
   });
+
+  const data = await response.json();
+  if (!data.success) throw new Error(data.message || "Gönderim başarısız");
 }
 
-if (sendEmailBtn) {
-  sendEmailBtn.addEventListener("click", () => {
+if (sendOrderBtn) {
+  sendOrderBtn.addEventListener("click", async () => {
     if (!validateCheckout()) return;
-    const subject = encodeURIComponent("Yeni Sipariş! - Blackcore");
-    const body = encodeURIComponent(buildOrderText());
-    window.location.href = `mailto:${ORDER_EMAIL_ADDRESS}?subject=${subject}&body=${body}`;
-    showToast("E-posta programın açılıyor");
+
+    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY") {
+      showToast("Site sahibi otomatik bildirimi henüz bağlamadı — WhatsApp linkiyle gönder");
+      return;
+    }
+
+    sendOrderBtn.disabled = true;
+    sendOrderLabel.textContent = "Gönderiliyor…";
+
+    try {
+      await sendOrderAutomatically();
+      showToast("Siparişin iletildi, kısa süre içinde dönüş yapacağız");
+      cart = [];
+      saveCart(cart);
+      renderCart();
+      checkoutEmail.value = "";
+      checkoutNote.value = "";
+      setTimeout(closeCart, 1200);
+    } catch (err) {
+      showToast("Gönderilemedi, WhatsApp linkinden dene");
+    } finally {
+      sendOrderBtn.disabled = false;
+      sendOrderLabel.textContent = "Siparişi Gönder";
+    }
   });
 }
 
@@ -281,49 +327,45 @@ if (sendEmailBtn) {
 renderCart();
 
 // =====================================================================
-// Hero signature: verification code reel
-// Cycles random digits like an incoming OTP, then "locks in"
-// and settles on a verified state — echoes the virtual-number product.
+// Hero signature: reactor core readout
+// Cycles like an incoming verification code, then "locks in" — ties
+// the brand mark to the virtual-number product without repeating it.
 // =====================================================================
-const otpDigits = document.querySelectorAll("#otpDigits span:not(:nth-child(4))");
-const otpStatus = document.getElementById("otpStatus");
-
+const coreDigitsEl = document.getElementById("coreDigits");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function randomDigit() {
-  return Math.floor(Math.random() * 10);
+function randomCode() {
+  const a = Math.floor(Math.random() * 900) + 100;
+  const b = Math.floor(Math.random() * 900) + 100;
+  return `${a}-${b}`;
 }
 
-function runOtpCycle() {
-  if (!otpDigits.length || !otpStatus) return;
+function runCoreCycle() {
+  if (!coreDigitsEl) return;
 
   if (prefersReducedMotion) {
-    otpDigits.forEach((d, i) => (d.textContent = "204819"[i] || "0"));
-    otpStatus.textContent = "doğrulandı";
-    otpStatus.classList.add("is-verified");
+    coreDigitsEl.textContent = "204-819";
+    coreDigitsEl.classList.add("is-verified");
     return;
   }
 
-  otpStatus.textContent = "kod bekleniyor…";
-  otpStatus.classList.remove("is-verified");
-
+  coreDigitsEl.classList.remove("is-verified");
   let ticks = 0;
-  const maxTicks = 14;
+  const maxTicks = 12;
 
   const interval = setInterval(() => {
-    otpDigits.forEach((d) => (d.textContent = randomDigit()));
+    coreDigitsEl.textContent = randomCode();
     ticks += 1;
-
     if (ticks >= maxTicks) {
       clearInterval(interval);
-      otpStatus.textContent = "doğrulandı";
-      otpStatus.classList.add("is-verified");
-      setTimeout(runOtpCycle, 3600);
+      coreDigitsEl.textContent = "204-819";
+      coreDigitsEl.classList.add("is-verified");
+      setTimeout(runCoreCycle, 3800);
     }
-  }, 90);
+  }, 95);
 }
 
-runOtpCycle();
+runCoreCycle();
 
 // =====================================================================
 // Scroll reveal for product cards, process steps, contact cards
