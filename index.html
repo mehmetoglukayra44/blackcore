@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova Dijital — Sanal Numara & Hesap Pazarı</title>
+<title>Blackcore — Sanal Numara & Hesap Pazarı</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -12,12 +12,13 @@
 <body>
 
 <div class="noise-overlay" aria-hidden="true"></div>
+<div class="core-glow" aria-hidden="true"></div>
 
 <header class="site-header">
   <div class="wrap header-inner">
     <a href="#top" class="brand">
-      <span class="brand-mark">N#</span>
-      <span class="brand-name">Nova Dijital</span>
+      <span class="brand-core" aria-hidden="true"></span>
+      <span class="brand-name">BLACKCORE</span>
     </a>
     <nav class="main-nav" aria-label="Ana menü">
       <a href="#numaralar">Sanal Numara</a>
@@ -25,9 +26,15 @@
       <a href="#diger">Diğer</a>
       <a href="#iletisim" class="nav-cta">İletişim</a>
     </nav>
-    <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="header-actions">
+      <button class="cart-btn" id="cartToggle" aria-label="Sepeti aç">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="18" cy="21" r="1.4"></circle><path d="M2.5 3h2.6l2.3 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6l1.4-7.6H6"></path></svg>
+        <span class="cart-badge" id="cartCount">0</span>
+      </button>
+      <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -39,10 +46,10 @@
       <div class="hero-copy">
         <p class="eyebrow">Doğrulanmış · Hızlı Teslimat · Güvenli Ödeme</p>
         <h1>Numaran gelsin,<br>hesabın hazır olsun.</h1>
-        <p class="hero-sub">WhatsApp İşletme için sanal numara, Steam oyun hesapları ve daha fazlası — tek adreste, anlık teslim.</p>
+        <p class="hero-sub">WhatsApp İşletme için sanal numara, Steam oyun hesapları ve daha fazlası — sepetine ekle, bilgini bırak, biz sana dönelim.</p>
         <div class="hero-actions">
-          <a href="#iletisim" class="btn btn-primary">WhatsApp'tan Yaz</a>
-          <a href="#urunler" class="btn btn-ghost">Ürünleri Gör</a>
+          <a href="#urunler" class="btn btn-primary">Ürünleri Gör</a>
+          <a href="#iletisim" class="btn btn-ghost">WhatsApp'tan Yaz</a>
         </div>
         <div class="hero-stats">
           <div><span class="stat-num">200₺</span><span class="stat-label">Sanal numara başlangıç</span></div>
@@ -70,6 +77,16 @@
     </div>
   </section>
 
+  <!-- TRUST STRIP -->
+  <section class="trust-strip">
+    <div class="wrap trust-inner">
+      <div class="trust-item"><span class="trust-dot"></span>Anlık teslimat</div>
+      <div class="trust-item"><span class="trust-dot"></span>Doğrulanmış satıcı</div>
+      <div class="trust-item"><span class="trust-dot"></span>Sepetten tek adımda sipariş</div>
+      <div class="trust-item"><span class="trust-dot"></span>7/24 WhatsApp desteği</div>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section class="services" id="urunler">
     <div class="wrap">
@@ -93,7 +110,9 @@
           </ul>
           <div class="card-price-row">
             <span class="price-range">200₺ – 400₺</span>
-            <a href="#iletisim" class="card-btn">Numara Al</a>
+            <button class="card-btn add-to-cart" data-id="sanal-numara" data-name="Sanal Numara" data-price="300" data-tag="WhatsApp İşletme">
+              <span>+ Sepete Ekle</span>
+            </button>
           </div>
         </article>
 
@@ -110,7 +129,9 @@
           </ul>
           <div class="card-price-row">
             <span class="price-range">400₺ – 800₺</span>
-            <a href="#iletisim" class="card-btn">Hesap Al</a>
+            <button class="card-btn add-to-cart" data-id="oyun-hesabi" data-name="Oyun Hesabı (Steam)" data-price="600" data-tag="Steam">
+              <span>+ Sepete Ekle</span>
+            </button>
           </div>
         </article>
 
@@ -127,7 +148,9 @@
           </ul>
           <div class="card-price-row">
             <span class="price-range">500₺ ve üzeri</span>
-            <a href="#iletisim" class="card-btn">Bize Yaz</a>
+            <button class="card-btn add-to-cart" data-id="diger-urun" data-name="Diğer / Özel Talep" data-price="500" data-tag="Özel Talep">
+              <span>+ Sepete Ekle</span>
+            </button>
           </div>
         </article>
 
@@ -144,19 +167,19 @@
       </div>
       <div class="process-grid">
         <div class="process-step">
-          <span class="step-mark">Yaz</span>
-          <h3>Ürünü seç, bize yaz</h3>
-          <p>WhatsApp üzerinden istediğin ürünü ve tercihini ilet.</p>
+          <span class="step-mark">Sepet</span>
+          <h3>Ürünleri sepete ekle</h3>
+          <p>İstediğin ürünleri ve adetlerini sepetine ekle.</p>
         </div>
         <div class="process-step">
-          <span class="step-mark">Onayla</span>
-          <h3>Fiyat ve detay netleşsin</h3>
-          <p>Fiyatı ve teslimat şeklini birlikte teyit ederiz.</p>
+          <span class="step-mark">Gönder</span>
+          <h3>E-postanı bırak, gönder</h3>
+          <p>Sepeti WhatsApp ya da e-posta ile bize ilet.</p>
         </div>
         <div class="process-step">
           <span class="step-mark">Teslim Al</span>
-          <h3>Ödeme sonrası anlık teslim</h3>
-          <p>Numaran ya da hesabın, onayın sonrası hemen elinde.</p>
+          <h3>Onay sonrası anlık teslim</h3>
+          <p>Fiyatı teyit eder, ödeme sonrası hemen teslim ederiz.</p>
         </div>
       </div>
     </div>
@@ -168,7 +191,7 @@
       <div class="section-head">
         <p class="eyebrow">İletişim</p>
         <h2>Sipariş için WhatsApp'tan ulaş</h2>
-        <p class="contact-sub">Sorular, fiyat teyidi ve teslimat için doğrudan aşağıdaki hatlardan yazabilirsin.</p>
+        <p class="contact-sub">Sorular, fiyat teyidi ve teslimat için doğrudan aşağıdaki hatlardan yazabilir, ya da sepetini oluşturup tek adımda gönderebilirsin.</p>
       </div>
 
       <div class="contact-grid">
@@ -190,10 +213,53 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <span>© <span id="year"></span> Nova Dijital</span>
+    <span>© <span id="year"></span> Blackcore</span>
     <span class="footer-note">Sanal numara · Steam hesabı · Dijital ürün</span>
   </div>
 </footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Sepet" aria-hidden="true">
+  <div class="cart-head">
+    <h3>Sepetin</h3>
+    <button class="cart-close" id="cartClose" aria-label="Sepeti kapat">✕</button>
+  </div>
+
+  <div class="cart-body">
+    <div class="cart-empty" id="cartEmpty">
+      <p>Sepetin şu an boş.</p>
+      <p class="cart-empty-sub">Ürünler bölümünden ekleyerek başla.</p>
+    </div>
+
+    <ul class="cart-items" id="cartItems"></ul>
+
+    <div class="cart-summary" id="cartSummary" hidden>
+      <div class="cart-summary-row">
+        <span>Tahmini toplam</span>
+        <span class="cart-total" id="cartTotal">0₺</span>
+      </div>
+      <p class="cart-note">Fiyatlar tahminidir, kesin tutar onay sonrası netleşir.</p>
+    </div>
+  </div>
+
+  <div class="cart-checkout" id="cartCheckout" hidden>
+    <label class="field-label" for="checkoutEmail">E-posta adresin</label>
+    <input class="field-input" type="email" id="checkoutEmail" placeholder="ornek@eposta.com" required>
+
+    <label class="field-label" for="checkoutNote">Not (opsiyonel)</label>
+    <textarea class="field-input field-textarea" id="checkoutNote" rows="3" placeholder="Ülke kodu, oyun tercihi, bütçe vb."></textarea>
+
+    <p class="field-error" id="checkoutError" hidden>Lütfen geçerli bir e-posta adresi gir.</p>
+
+    <div class="checkout-actions">
+      <button class="btn btn-primary btn-block" id="sendWhatsapp">WhatsApp ile Gönder</button>
+      <button class="btn btn-ghost btn-block" id="sendEmail">E-posta ile Gönder</button>
+    </div>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
 
 <script src="script.js"></script>
 </body>
